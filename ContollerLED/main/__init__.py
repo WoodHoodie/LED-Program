@@ -37,7 +37,7 @@ def animation_loop(i):
             new_lead= lead[1]- 60
             if (new_lead< 0):
                 new_lead= 300
-            lead_leds[lead[0]]= new_lead    
+            lead_leds[lead[0]]= new_lead  
         client.put_pixels(led_colours, 0)
         time.sleep(0.2)
 
@@ -45,7 +45,10 @@ def animation_loop(i):
 
 led_colours= [(255 ,0 ,0)] * 360
 lead_leds= [0, 60, 120, 180, 240, 300]
-client= opc.Client("localhost:7890")
+#Local simulation client
+#client= opc.Client("localhost:7890")
+#fadecandy client
+client= opc.Client("192.168.2.1:7890")
 run= True
 _thread.start_new_thread(animation_loop, (0,))
 input("Press any key to exit...")
